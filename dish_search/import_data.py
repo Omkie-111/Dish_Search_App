@@ -1,15 +1,18 @@
-# import_data.py
+import pandas as pd
+import ast
+from dish_search.models import Restaurant, Dish
 
-import csv
-from dish_search.models import Dish
+data = pd.read_csv('restaurants_small.csv')
 
-with open('restaurants_small.csv') as csvfile:
-    reader = csv.DictReader(csvfile)
-    for row in reader:
-        Dish.objects.create(
-            name=row['name'],
-            location=row['location'],
-            items=row['items'],
-            lat_long=row['lat_long'],
-            full_details=row['full_details']
-        )
+for index, row in data.iterrows():
+    restaurant = Restaurant.objects.create(
+        name=row['name'],
+        location=row['location'],
+        lat_long=row['lat_long'],
+        full_details=row['full_details']
+    )
+
+    items_dict = ast.literal_eval(row['items'])
+
+    for item_name in items_dict.keys():
+        Dish.objects.create(name=item_name, restaurant=restaurant)

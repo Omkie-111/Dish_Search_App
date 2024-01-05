@@ -15,9 +15,8 @@
         <ul>
             {% for dish in dishes %}
                 <li>
-                    <h3>{{ dish.name }}</h3>
-                    <p>Location: {{ dish.location }}</p>
-                    <p>Dishes: {{ dish.items }}</p>
+                    <strong>Restaurant:</strong> {{ dish.restaurant.name }}<br>
+                    <strong>Dish:</strong> {{ dish.name }}}
                 </li>
             {% endfor %}
         </ul>
