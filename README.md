@@ -23,7 +23,7 @@ This is a Django search application that allows you to search for dish names and
    python manage.py migrate
    ```
 
-4. Import data from the CSV file into the database**(not required as SQLite file is provide only for reference)**:
+4. Import data from the CSV file into the database **(not required as SQLite file is provide only for reference)**:
 
    ```shell
    python manage.py shell -c "exec(open('dish_search/import_data.py').read())"
